@@ -1,4 +1,5 @@
 "use strict";
+const { INTEGER } = require("sequelize");
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class space extends Model {
@@ -9,14 +10,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       space.belongsTo(models.user);
-      space.hasOne(models.service);
     }
   }
   space.init(
     {
       title: { type: DataTypes.STRING, allowNull: false },
-      description: { type: DataTypes.STRING, allowNull: false },
+      description: { type: DataTypes.STRING },
       logoUrl: { type: DataTypes.STRING },
+      price: { type: DataTypes.INTEGER },
     },
     {
       sequelize,

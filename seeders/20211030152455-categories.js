@@ -15,6 +15,21 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          title: "Education",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          title: "Boat&Bike",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          title: "Pet Care",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );

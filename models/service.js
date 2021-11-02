@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       service.hasMany(models.review);
-      service.belongsTo(models.space);
+      // service.belongsTo(models.space);
       service.belongsTo(models.category);
       service.belongsToMany(models.user, {
         through: "userServices",

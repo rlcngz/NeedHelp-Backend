@@ -52,6 +52,33 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          firstName: "d",
+          lastName: "d",
+          email: "d@d.com",
+          password: bcrypt.hashSync("d", SALT_ROUNDS),
+          isService: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          firstName: "e",
+          lastName: "e",
+          email: "e@e.com",
+          password: bcrypt.hashSync("e", SALT_ROUNDS),
+          isService: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          firstName: "f",
+          lastName: "f",
+          email: "f@f.com",
+          password: bcrypt.hashSync("f", SALT_ROUNDS),
+          isService: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );

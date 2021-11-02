@@ -8,8 +8,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      review.belongsTo(models.user);
-      review.belongsTo(models.user);
+      review.belongsTo(models.user, {
+        foreignKey: "reviewedId",
+        as: "reviewed",
+      });
+      review.belongsTo(models.user, {
+        foreignKey: "authorId",
+        as: "author",
+      });
     }
   }
   review.init(
