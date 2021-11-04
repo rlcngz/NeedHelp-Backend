@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      service.hasMany(models.review);
+      // service.hasMany(models.review);
+      // service.belongsTo(models.user);
       service.belongsTo(models.category);
       service.belongsToMany(models.user, {
         through: "userServices",

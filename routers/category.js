@@ -2,7 +2,8 @@ const { Router } = require("express");
 const Category = require("../models/").category;
 const Service = require("../models").service;
 const Space = require("../models").space;
-const spaceService = require("../models").spaceService;
+const Review = require("../models").review;
+const User = require("../models").user;
 
 const authMiddleware = require("../auth/middleware");
 const router = new Router();
@@ -24,7 +25,12 @@ router.get("/:id", async (req, res, next) => {
     const category = await Category.findByPk(categoryId, {
       include: {
         model: Service,
-        include: { model: Space, through: { attributes: [] } },
+        include: [
+          {
+            model: Space,
+            through: { attributes: [] },
+          },
+        ],
       },
     });
 

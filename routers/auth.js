@@ -59,7 +59,7 @@ router.post("/signup", async (req, res) => {
 
     const token = toJWT({ userId: newUser.id });
     // console.log(token);
-    // console.log("I get here with ", newUser.dataValues.id);
+    console.log("I get here with ", newUser.dataValues);
     // console.log(newUser);
 
     const space = await Space.create({
@@ -91,6 +91,7 @@ router.post("/signup", async (req, res) => {
 router.get("/me", authMiddleware, async (req, res) => {
   // don't send back the password hash
   const space = await Space.findOne({ where: { userId: req.user.id } });
+
   delete req.user.dataValues["password"];
   res.status(200).send({ ...req.user.dataValues, space });
 });

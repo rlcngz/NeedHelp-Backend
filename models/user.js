@@ -51,6 +51,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
+      // serviceId: {
+      //   type: DataTypes.INTEGER,
+      // },
     },
     {
       sequelize,

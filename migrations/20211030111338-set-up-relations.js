@@ -56,14 +56,14 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    // await queryInterface.addColumn("spaces", "serviceId", {
+    // await queryInterface.addColumn("users", "serviceId", {
     //   type: Sequelize.INTEGER,
     //   references: {
     //     model: "services",
     //     key: "id",
     //   },
     //   onUpdate: "CASCADE",
-    //   onDelete: "SET NULL",
+    //   onDelete: "CASCADE",
     // });
   },
 
@@ -74,6 +74,6 @@ module.exports = {
     await queryInterface.removeColumn("reviews", "reviewedId");
     // await queryInterface.removeColumn("reviews", "spaceId");
     await queryInterface.removeColumn("services", "categoryId");
-    // await queryInterface.removeColumn("spaces", "serviceId");
+    // await queryInterface.removeColumn("users", "serviceId");
   },
 };
