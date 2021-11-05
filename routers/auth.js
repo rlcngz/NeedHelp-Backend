@@ -59,12 +59,13 @@ router.post("/signup", async (req, res) => {
 
     const token = toJWT({ userId: newUser.id });
     // console.log(token);
-    console.log("I get here with ", newUser.dataValues);
+    // console.log("I get here with ", newUser.dataValues);
     // console.log(newUser);
 
     const space = await Space.create({
       title: `${firstName}'s Space`,
       userId: newUserId,
+      serviceType: serviceId,
       description: null,
       logoUrl: null,
     });

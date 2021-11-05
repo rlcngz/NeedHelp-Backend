@@ -38,15 +38,15 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "CASCADE",
     });
-    // await queryInterface.addColumn("reviews", "spaceId", {
-    //   type: Sequelize.INTEGER,
-    //   references: {
-    //     model: "spaces",
-    //     key: "id",
-    //   },
-    //   onUpdate: "CASCADE",
-    //   onDelete: "SET NULL",
-    // });
+    await queryInterface.addColumn("reviews", "spaceId", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "spaces",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    });
     await queryInterface.addColumn("services", "categoryId", {
       type: Sequelize.INTEGER,
       references: {
