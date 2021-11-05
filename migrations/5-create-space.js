@@ -14,14 +14,20 @@ module.exports = {
       description: {
         type: Sequelize.STRING,
       },
-      type: {
-        type: Sequelize.STRING,
-      },
       logoUrl: {
         type: Sequelize.STRING,
       },
       price: {
         type: Sequelize.INTEGER,
+      },
+      serviceId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "services",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       },
       createdAt: {
         allowNull: false,

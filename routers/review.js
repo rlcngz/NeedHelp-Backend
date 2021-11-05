@@ -32,16 +32,22 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", auth, async (req, res, next) => {
   try {
-    const name = req.body.firstName;
-    const review = req.body.comment;
-    if (!name || (name === " " && !review) || review === " ") {
+    const { firstName, id } = req.user;
+    const { spaceId, comment } = req.body;
+
+    if (!firstName || (firstName === " " && !comment) || comment === " ") {
       res.status(400).send("Must provide a name and comment");
     } else {
-      const comment = await Review.create(req.body);
+      const review = await Review.create({
+        firstName,
+        comment,
+        spaceId,
+        authorId: id,
+      });
       // console.log("test comment", comment);
-      res.json(comment);
+      res.json(review);
     }
   } catch (e) {
     next(e);

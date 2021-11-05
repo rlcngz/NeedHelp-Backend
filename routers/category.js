@@ -28,7 +28,7 @@ router.get("/:id", async (req, res, next) => {
         include: [
           {
             model: Space,
-            through: { attributes: [] },
+            // through: { attributes: [] },
           },
         ],
       },

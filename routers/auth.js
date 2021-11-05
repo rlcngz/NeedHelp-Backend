@@ -65,12 +65,10 @@ router.post("/signup", async (req, res) => {
     const space = await Space.create({
       title: `${firstName}'s Space`,
       userId: newUserId,
-      serviceType: serviceId,
+      serviceId: null,
       description: null,
       logoUrl: null,
     });
-
-    // console.log("got to space");
 
     return res
       .status(201)

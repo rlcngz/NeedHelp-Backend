@@ -10,9 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       space.belongsTo(models.user);
       space.hasMany(models.review);
-      space.belongsToMany(models.service, {
-        through: "spaceServices",
-        foreignKey: "spaceId",
+      // space.belongsToMany(models.service, {
+      //   through: "spaceServices",
+      //   foreignKey: "spaceId",
+      // });
+      space.belongsTo(models.service, {
+        through: "services",
+        foreignKey: "serviceId",
       });
     }
   }
@@ -20,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       title: { type: DataTypes.STRING, allowNull: false },
       description: { type: DataTypes.STRING },
-      // type: { type: DataTypes.STRING },
+      serviceId: { type: DataTypes.INTEGER },
       logoUrl: { type: DataTypes.STRING },
       price: { type: DataTypes.INTEGER },
     },

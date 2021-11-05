@@ -54,11 +54,17 @@ router.patch("/:id", auth, async (req, res) => {
         .send({ message: "You are not authorized to update this space" });
     }
 
-    const { title, description, serviceType, logoUrl, price } = req.body;
-    // console.log("the body", req.body);
-    await space.update({ title, description, serviceType, logoUrl, price });
+    const { title, description, serviceId, logoUrl, price } = req.body;
+    console.log("this is body of information", req.body);
+    const updatedSpace = await space.update({
+      title,
+      description,
+      serviceId,
+      logoUrl,
+      price,
+    });
 
-    return res.status(200).send({ space });
+    return res.status(200).send(updatedSpace);
   } catch (error) {
     console.log(error.message);
   }

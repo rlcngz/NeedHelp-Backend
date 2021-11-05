@@ -41,6 +41,18 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          title: "Coding School",
+          categoryId: 3,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          title: "Tutoring",
+          categoryId: 3,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
