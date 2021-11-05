@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const auth = require("../auth/middleware");
 const Space = require("../models").space;
+const User = require("../models").user;
+const Review = require("../models").review;
 
 const router = new Router();
 
@@ -8,7 +10,7 @@ router.get("/", async (req, res, next) => {
   try {
     const spaces = await Space.findAll();
     res.status(200).send({ message: "ok", spaces });
-    console.log("all spaces are here?", spaces);
+    // console.log("all spaces are here?", spaces);
   } catch (e) {
     next(e);
   }
@@ -17,11 +19,26 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const spaceId = parseInt(req.params.id);
-    const space = await Space.findByPk(spaceId);
+    const space = await Space.findByPk(spaceId, {
+      include: [
+        {
+          model: User,
+          include: {
+            model: User,
+            as: "author",
+            through: {
+              attributes: [],
+            },
+          },
+        },
+        { model: Review },
+      ],
+    });
+    // console.log("do I get space?", space);
     if (space) {
       res.send(space);
     } else {
-      res.status(404).send("Space not found");
+      res.status(404).send({ message: "Space not found" });
     }
   } catch (e) {
     next(e);
@@ -37,11 +54,17 @@ router.patch("/:id", auth, async (req, res) => {
         .send({ message: "You are not authorized to update this space" });
     }
 
-    const { title, description, logoUrl, price } = req.body;
-    console.log("the body", req.body);
-    await space.update({ title, description, logoUrl, price });
+    const { title, description, serviceId, logoUrl, price } = req.body;
+    console.log("this is body of information", req.body);
+    const updatedSpace = await space.update({
+      title,
+      description,
+      serviceId,
+      logoUrl,
+      price,
+    });
 
-    return res.status(200).send({ space });
+    return res.status(200).send(updatedSpace);
   } catch (error) {
     console.log(error.message);
   }

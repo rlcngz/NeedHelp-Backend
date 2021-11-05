@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      review.belongsTo(models.space);
       review.belongsTo(models.user, {
         foreignKey: "reviewedId",
         as: "reviewed",
@@ -20,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   review.init(
     {
-      star: { type: DataTypes.INTEGER, allowNull: false },
+      firstName: { type: DataTypes.STRING },
       comment: { type: DataTypes.STRING },
     },
     {

@@ -8,13 +8,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      service.hasMany(models.review);
-      // service.belongsTo(models.space);
+      // service.hasMany(models.review);
+      // service.belongsTo(models.user);
+      service.hasMany(models.space);
       service.belongsTo(models.category);
-      service.belongsToMany(models.user, {
-        through: "userServices",
-        foreignKey: "serviceId",
-      });
+      // service.belongsToMany(models.user, {
+      //   through: "userServices",
+      //   foreignKey: "serviceId",
+      // });
+      // service.belongsToMany(models.space, {
+      //   through: "spaceServices",
+      //   foreignKey: "serviceId",
+      // });
     }
   }
   service.init(

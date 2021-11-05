@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       user.hasOne(models.space);
       user.hasOne(models.address);
+      // user.hasOne(models.service);
       user.belongsToMany(models.user, {
         through: "reviews",
         foreignKey: "reviewedId",
@@ -51,6 +52,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
+      // serviceId: {
+      //   type: DataTypes.INTEGER,
+      // },
     },
     {
       sequelize,
