@@ -5,6 +5,7 @@ const authMiddleware = require("../auth/middleware");
 const User = require("../models/").user;
 const Space = require("../models/").space;
 const { SALT_ROUNDS } = require("../config/constants");
+const { sendEmail } = require("../lib/email");
 
 const router = new Router();
 
@@ -81,6 +82,32 @@ router.post("/signup", async (req, res) => {
     }
 
     return res.status(400).send({ message: "Something went wrong, sorry" });
+  }
+});
+
+// add auth middleware later
+router.post("/email", async (req, res, next) => {
+  try {
+    console.log("hello from route", req.body);
+    // get user.id from token/middleware
+    // find user in database and get his name + email.
+    const userEmail = req.body.userEmail;
+    const spaceUserEmail = req.body.spaceUserEmail;
+    const userName = req.body.name;
+
+    // message comes from req.body;
+    const message = req.body.message;
+
+    const result = await sendEmail(
+      userEmail,
+      spaceUserEmail,
+      userName,
+      message
+    );
+    console.log(result);
+    return res.status(200).send({ message: "Email sent" });
+  } catch (e) {
+    next(e);
   }
 });
 
