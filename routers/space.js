@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const auth = require("../auth/middleware");
 const Space = require("../models").space;
+const Address = require("../models").address;
 const User = require("../models").user;
 const Review = require("../models").review;
 
@@ -45,24 +46,60 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+// edit my space
+// edit the address
 router.patch("/:id", auth, async (req, res) => {
   try {
-    const space = await Space.findByPk(req.params.id);
+    const a = await Address.findOne({
+      where: { spaceId: parseInt(req.params.id) },
+    });
+    console.log("we are here", { spaceId: parseInt(req.params.id) }, a);
+    // include address table
+    const [space, address] = await Promise.all([
+      Space.findByPk(req.params.id),
+      Address.findOne({ where: { spaceId: parseInt(req.params.id) } }),
+    ]);
+
     if (!space.userId === req.user.id) {
       return res
         .status(403)
         .send({ message: "You are not authorized to update this space" });
     }
-
-    const { title, description, serviceId, logoUrl, price } = req.body;
-    console.log("this is body of information", req.body);
-    const updatedSpace = await space.update({
+    console.log("space", space);
+    const {
       title,
       description,
       serviceId,
       logoUrl,
       price,
-    });
+      street,
+      number,
+      postCode,
+      city,
+      country,
+      lng,
+      lat,
+    } = req.body;
+    console.log("this is body of information", req.body);
+    // const updatedSpace = await space.update({
+    //   title,
+    //   description,
+    //   serviceId,
+    //   logoUrl,
+    //   price,
+    //   street,
+    //   number,
+    //   postCode,
+    //   city,
+    //   country,
+    //   lng,
+    //   lat,
+    // });
+
+    const [updatedSpace, updatedAddress] = await Promise.all([
+      space.update({ title, description, serviceId, logoUrl, price }),
+      address.update({ street, number, postCode, city, country, lng, lat }),
+    ]);
 
     return res.status(200).send(updatedSpace);
   } catch (error) {

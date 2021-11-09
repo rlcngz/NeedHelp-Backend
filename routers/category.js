@@ -4,6 +4,7 @@ const Service = require("../models").service;
 const Space = require("../models").space;
 const Review = require("../models").review;
 const User = require("../models").user;
+const Address = require("../models").address;
 
 const authMiddleware = require("../auth/middleware");
 const router = new Router();
@@ -28,7 +29,7 @@ router.get("/:id", async (req, res, next) => {
         include: [
           {
             model: Space,
-            // through: { attributes: [] },
+            include: [{ model: Address }],
           },
         ],
       },

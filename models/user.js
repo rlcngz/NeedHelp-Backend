@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       user.hasOne(models.space);
-      user.hasOne(models.address);
+      // user.hasOne(models.address);
       // user.hasOne(models.service);
       user.belongsToMany(models.user, {
         through: "reviews",

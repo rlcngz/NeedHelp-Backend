@@ -8,38 +8,34 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      address.belongsTo(models.user);
+      address.belongsTo(models.space);
     }
   }
   address.init(
     {
       street: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       number: {
         type: DataTypes.INTEGER,
-        allowNull: false,
       },
       postCode: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       city: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       country: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       lng: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+        type: DataTypes.FLOAT,
       },
       lat: {
+        type: DataTypes.FLOAT,
+      },
+      spaceId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
       },
     },
     {
