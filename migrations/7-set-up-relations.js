@@ -11,10 +11,10 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    await queryInterface.addColumn("addresses", "userId", {
+    await queryInterface.addColumn("addresses", "spaceId", {
       type: Sequelize.INTEGER,
       references: {
-        model: "users",
+        model: "spaces",
         key: "id",
       },
       onUpdate: "CASCADE",
@@ -56,20 +56,11 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    // await queryInterface.addColumn("users", "serviceId", {
-    //   type: Sequelize.INTEGER,
-    //   references: {
-    //     model: "services",
-    //     key: "id",
-    //   },
-    //   onUpdate: "CASCADE",
-    //   onDelete: "CASCADE",
-    // });
   },
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.removeColumn("spaces", "userId");
-    await queryInterface.removeColumn("addresses", "userId");
+    await queryInterface.removeColumn("addresses", "spaceId");
     await queryInterface.removeColumn("reviews", "authorId");
     await queryInterface.removeColumn("reviews", "reviewedId");
     // await queryInterface.removeColumn("reviews", "spaceId");

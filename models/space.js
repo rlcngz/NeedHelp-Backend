@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       space.belongsTo(models.user);
+      space.hasOne(models.address);
       space.hasMany(models.review);
       // space.belongsToMany(models.service, {
       //   through: "spaceServices",

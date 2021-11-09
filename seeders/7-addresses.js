@@ -1,0 +1,100 @@
+"use strict";
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkInsert(
+      "addresses",
+      [
+        {
+          street: "Brederodestraat",
+          number: 97,
+          postCode: "1054 VC",
+          city: "Amsterdam",
+          country: "The Netherlands",
+          lng: 4.8620023,
+          lat: 52.3606091,
+          spaceId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          street: "Amstel",
+          number: 3,
+          postCode: "1011 PN",
+          city: "Amsterdam",
+          country: "The Netherlands",
+          lng: 4.89675,
+          lat: 52.35172,
+          spaceId: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          street: "Nicolaaas Beetstaat",
+          number: 3,
+          postCode: "1054 MP",
+          city: "Amsterdam",
+          country: "The Netherlands",
+          lng: 4.8704274,
+          lat: 52.3619314,
+          spaceId: 3,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          street: "Overtoom",
+          number: 272,
+          postCode: "1054 JB",
+          city: "Amsterdam",
+          country: "The Netherlands",
+          lng: 4.8693825,
+          lat: 52.3613937,
+          spaceId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          street: "Tweede Constantijn Huygensstraat",
+          number: 41,
+          postCode: "1054 CP",
+          city: "Amsterdam",
+          country: "The Netherlands",
+          lng: 4.8670054,
+          lat: 52.3611192,
+          spaceId: 5,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          street: "Tweede Constantijn Huygensstraat",
+          number: 64,
+          postCode: "1054 BR",
+          city: "Amsterdam",
+          country: "The Netherlands",
+          lng: 4.8729198,
+          lat: 52.3634965,
+          spaceId: 6,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          street: "Eerste Constantijn Huygensstraat",
+          number: 68,
+          postCode: "1054 BW",
+          city: "Amsterdam",
+          country: "The Netherlands",
+          lng: 4.8738503,
+          lat: 52.3637433,
+          spaceId: 7,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {}
+    );
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete("addresses", null, {});
+  },
+};
