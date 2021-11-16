@@ -41,7 +41,7 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { email, password, firstName, lastName, isService } = req.body;
+  const { email, password, firstName, lastName, isService, image } = req.body;
 
   if (!email || !password || !firstName || !lastName) {
     return res
@@ -64,55 +64,16 @@ router.post("/signup", async (req, res) => {
     // console.log("I get here with ", newUser.dataValues);
     // console.log(newUser);
 
-    // const space = await Space.create({
-    //   title: `${firstName}'s Space`,
-    //   userId: newUserId,
-    //   serviceId: null,
-    //   description: null,
-    //   logoUrl: null,
-    //   price: null,
-    //   street: null,
-    //   number: null,
-    //   postCode: null,
-    //   city: null,
-    //   country: null,
-    //   lng: null,
-    //   lat: null,
-    // });
     console.log("hello ", newUser);
     const createdSpace = await Space.create({
       title: `${firstName}'s Space`,
       userId: newUserId,
       serviceId: null,
       description: null,
-      logoUrl: null,
+      logoUrl: image,
       price: null,
     });
     console.log("space ", createdSpace);
-    // street: {
-    //   type: DataTypes.STRING,
-    // },
-    // number: {
-    //   type: DataTypes.INTEGER,
-    // },
-    // postCode: {
-    //   type: DataTypes.STRING,
-    // },
-    // city: {
-    //   type: DataTypes.STRING,
-    // },
-    // country: {
-    //   type: DataTypes.STRING,
-    // },
-    // lng: {
-    //   type: DataTypes.FLOAT,
-    // },
-    // lat: {
-    //   type: DataTypes.FLOAT,
-    // },
-    // spaceId: {
-    //   type: DataTypes.INTEGER,
-    // },
 
     const createdAddress = await Address.create({
       street: null,
