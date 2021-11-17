@@ -41,7 +41,7 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { email, password, firstName, lastName, isService } = req.body;
+  const { email, password, firstName, lastName, isService, image } = req.body;
 
   if (!email || !password || !firstName || !lastName) {
     return res
@@ -85,7 +85,7 @@ router.post("/signup", async (req, res) => {
       userId: newUserId,
       serviceId: null,
       description: null,
-      logoUrl: null,
+      logoUrl: image,
       price: null,
     });
     console.log("space ", createdSpace);
@@ -162,7 +162,7 @@ router.post("/email", async (req, res, next) => {
       userName,
       message
     );
-    console.log(result);
+    console.log("result is here?", result);
     return res.status(200).send({ message: "Email sent" });
   } catch (e) {
     next(e);
