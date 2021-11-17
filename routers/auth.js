@@ -123,7 +123,7 @@ router.post("/email", async (req, res, next) => {
       userName,
       message
     );
-    console.log(result);
+    console.log("result is here?", result);
     return res.status(200).send({ message: "Email sent" });
   } catch (e) {
     next(e);
