@@ -10,6 +10,7 @@ const catRouter = require("./routers/category");
 const spaceRouter = require("./routers/space");
 const reviewRouter = require("./routers/review");
 const serviceRouter = require("./routers/service");
+const cors = require("cors");
 
 const app = express();
 /**
@@ -35,7 +36,7 @@ const app = express();
  * docs: https://expressjs.com/en/resources/middleware/cors.html
  *
  */
-
+app.use(cors());
 app.use(corsMiddleWare());
 
 /**
